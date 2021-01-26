@@ -3,13 +3,12 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service class="DvCompensationReportBackend\Services\DvReportService" id="dv_compensation_report_backend.services.dv_report_service" public="true"/>
+
         <service id="dv_compensation_report_backend.subscriber.templates" class="DvCompensationReportBackend\Subscriber\TemplateRegistration">
             <argument>%dv_compensation_report_backend.plugin_dir%</argument>
             <argument type="service" id="template"/>
             <tag name="shopware.event_subscriber"/>
         </service>
-
-        <service class="DvCompensationReportBackend\Services\CompensationReportService" id="dv_compensation_report_backend.services.compensation_report_service" public="true"/>
-
     </services>
 </container>

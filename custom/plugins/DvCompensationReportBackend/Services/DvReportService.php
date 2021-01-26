@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace DvCompensationReportBackend\Service;
+namespace DvCompensationReportBackend\Services;
 
-class CompensationReportService {
+class DvReportService {
 
-    public function getUserOrdersByCurrentMonth() {
+    public function getUserOrdersByCurrentMonth(): array {
         $dateFirst = new \DateTime('midnight first day of this month');
         $dateLast = new \DateTime('midnight last day of this month');
 

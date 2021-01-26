@@ -4,7 +4,7 @@ namespace DvConfiguration\Services;
 
 class CompensationReportService
 {
-    public function findOrdersByUserIdAndCurrentMonth(int $userId, ?string $month)
+    public function findOrdersByUserIdAndCurrentMonth(int $userId, ?string $month): array
     {
         $queryBuilder = shopware()->Container()->get('dbal_connection')->createQueryBuilder(); //TODO: Refactor query builder with entities, not sql tables
         $queryBuilder->select('s_order.ordernumber')
@@ -13,7 +13,7 @@ class CompensationReportService
             ->addSelect('s_order.status')
             ->from('s_order');
 
-        if ($month == 0) {
+        if ($month === 0) {
             $queryBuilder->where("s_order.ordertime BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND NOW()");
         }else {
             $queryBuilder->where("s_order.ordertime BETWEEN DATE_FORMAT(NOW(), '%Y-$month-01') AND DATE_FORMAT(NOW(), '%Y-$month-31')");
@@ -22,10 +22,11 @@ class CompensationReportService
             ->setParameters([
                 'userId' => $userId,
             ]);
-        return $orders = $queryBuilder->execute()->fetchAll();
+
+        return $queryBuilder->execute()->fetchAll();
     }
 
-    public function getTotalPrice($orders)
+    public function getTotalPrice(array $orders): array
     {
         $sumArray = array();
 
@@ -37,8 +38,8 @@ class CompensationReportService
         return $sumArray['invoice_amount'];
     }
 
-    public function getOptions() {
-        return $options = [
+    public function getOptions(): array {
+        return [
              '0' => 'Month',
              '01' => 'Jan',
              '02' => 'Feb',

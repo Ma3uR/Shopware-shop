@@ -7,7 +7,7 @@ class Shopware_Controllers_Frontend_CompensationReport extends Enlight_Controlle
      */
     private $compensationReportService;
 
-    public function preDispatch()
+    public function preDispatch(): void
     {
         $this->compensationReportService = $this->get('dv_configuration.services.compensation_report_service');
         $this->view->addTemplateDir(__DIR__ . '/../../Resources/views/');
@@ -25,8 +25,7 @@ class Shopware_Controllers_Frontend_CompensationReport extends Enlight_Controlle
         $this->view->assign('currentAction', $currentAction);
     }
 
-    public function indexAction()
-    {
+    public function indexAction(): void {
         $month = $_GET['month'];
         $orders = $this->compensationReportService->findOrdersByUserIdAndCurrentMonth(
             (int)$this->get('session')->get('sUserId'),
