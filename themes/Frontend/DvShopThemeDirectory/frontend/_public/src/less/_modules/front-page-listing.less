@@ -1,0 +1,98 @@
+.category-block {
+    flex-direction: column;
+    &__products {
+        position: relative;
+        &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 3rem;
+            &__wrapper {
+                max-width: 200px;
+                position: relative;
+                border: solid 1px #b7b7b7;
+                transform: skew(-7deg, 0deg);
+                &:hover {
+                    transition: .3s;
+                    transform: scale(1.06);
+                    border: solid 1px @brand-primary;
+                    .category-block__products__info {
+                        color: @brand-primary;
+                    }
+                    .product--title, .product--price-info {
+                        color:@brand-primary;
+                        &:before {
+                            border-bottom: solid 1px @brand-primary;
+                        }
+                    }
+                }
+            }
+        }
+        &__info {
+            position: relative;
+            font-size: 0.9rem;
+            z-index: 2;
+            text-transform: uppercase;
+            color: #7c7c7c;
+            width: 100%;
+            text-align: center;
+            .product--title {
+                margin-bottom: .5rem;
+            }
+            .product--title, .product--price-info {
+                padding-bottom: 2px;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    right: 0px;
+                    border-bottom: solid 1px #b7b7b7;
+                    overflow: visible;
+                }
+            }
+            a {
+                color: #7c7c7c;
+            }
+        }
+        .box--basic {
+            width: 25%;
+        }
+    }
+}
+.category-block__products {
+    .category-block__item-no--slider {
+        border: solid 1px #b7b7b7;
+        overflow:hidden;
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start;
+        max-width: 200px;
+        margin-left: 3rem;
+        transform: skew(-7deg, 0deg);
+        &:hover {
+            transition: .3s;
+            transform: scale(1.06);
+            border: solid 1px @brand-primary;
+            .category-block__products__info {
+                color: @brand-primary;
+            }
+            .product--title, .product--price-info {
+                color:@brand-primary;
+                &:before {
+                    border-bottom: solid 1px @brand-primary;
+                }
+            }
+        }
+    }
+}
+.product-image {
+    margin: 0 auto;
+    object-fit: cover;
+    height: 10vw;
+}
+
+//SLIDER
+.product-slider--container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}

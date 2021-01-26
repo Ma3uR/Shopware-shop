@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service class="DvConfiguration\Subscribers\FrontendIndexSubscriber" id="dv_configuration.subscribers.frontend_index_subscriber">
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <service class="DvConfiguration\Services\ProductNameService" id="dv_configuration.services.product_name_service" public="true"/>
+
+        <service class="DvConfiguration\Services\CompensationReportService" id="dv_configuration.services.compensation_report_service" public="true"/>
+    </services>
+
+</container>

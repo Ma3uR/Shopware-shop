@@ -99,6 +99,7 @@
                                 <a href="#" class="btn is--primary teaser--btn-print" onclick="self.print()" title="{$snippetFinishLinkPrint|escape}">
                                     {s name="FinishLinkPrint"}{/s}
                                 </a>
+                                <script></script>
                                 {/strip}
                             </p>
 
