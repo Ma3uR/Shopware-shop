@@ -10,5 +10,6 @@
             <argument type="service" id="template"/>
             <tag name="shopware.event_subscriber"/>
         </service>
+
     </services>
 </container>

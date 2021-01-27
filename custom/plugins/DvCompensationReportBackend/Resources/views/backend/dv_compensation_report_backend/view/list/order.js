@@ -17,22 +17,40 @@ Ext.define('Shopware.apps.DvCompensationReportBackend.view.list.Order', {
         items = Ext.Array.insert(
             items,
             2,
-            [ me.createToolbarButton() ]
+            [ me.createToolbarReportButton(), me.createToolbarSlackButton() ]
         );
 
         return items;
     },
 
-    createToolbarButton: function() {
+    createToolbarReportButton: function() {
         return Ext.create('Ext.button.Button', {
             text: 'Download PDF report',
-            class: 'test',
+            class: 'report',
             listeners: {
                 click: function () {
                     print();
                 }
             }
         });
+    },
+    createToolbarSlackButton: function() {
+        return Ext.create('Ext.button.Button', {
+            text: 'Send slack notice',
+            class: 'slack',
+            handler: function() {
+                Ext.Ajax.request({
+                    url: '{url controller=DvCompensationReportBackend action=sendNotice}',
+                    method: 'POST',
+                    success: function (response, conn) {
+                        Shopware.Notification.createGrowlMessage(undefined, 'The notification was sent to slack');
+                    },
+                    failure: function (response, conn) {
+                        alert('fail');
+                    }
+                })
+            }
+        })
     }
 });
 

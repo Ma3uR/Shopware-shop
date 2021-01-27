@@ -21,4 +21,23 @@ class DvReportService {
            ->getQuery()
            ->getResult();
     }
+
+    public function sendCurlRequest() {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://hooks.slack.com/services/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');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"text\":\"The daily menu has been loaded. Bon Appetit! Please visit http://test-shopware.com/\"}");
+
+        $headers = array();
+        $headers[] = 'Content-Type: application/json';
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $result = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error:' . curl_error($ch);
+        }
+        curl_close($ch);
+    }
 }
