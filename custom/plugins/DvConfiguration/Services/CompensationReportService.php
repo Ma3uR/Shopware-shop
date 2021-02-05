@@ -13,7 +13,7 @@ class CompensationReportService
             ->addSelect('s_order.status')
             ->from('s_order');
 
-        if ($month === 0) {
+        if ($month == 0) {
             $queryBuilder->where("s_order.ordertime BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND NOW()");
         }else {
             $queryBuilder->where("s_order.ordertime BETWEEN DATE_FORMAT(NOW(), '%Y-$month-01') AND DATE_FORMAT(NOW(), '%Y-$month-31')");
@@ -26,13 +26,15 @@ class CompensationReportService
         return $queryBuilder->execute()->fetchAll();
     }
 
-    public function getTotalPrice(array $orders): array
+    public function getTotalPrice(array $orders): ?float
     {
         $sumArray = array();
 
         foreach ($orders as $k=>$subArray) {
-            foreach ($subArray as $id=>$value) {
-                $sumArray[$id]+=$value;
+            if ($subArray['status'] == '2') {
+                foreach ($subArray as $id=>$value) {
+                    $sumArray[$id]+=$value;
+                }
             }
         }
         return $sumArray['invoice_amount'];

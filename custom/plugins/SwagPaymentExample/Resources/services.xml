@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="sandbox_Fldbwc8nWh3TZMf7fzi1tzxkAA4gVF5rCezFWan1" id="lq.private.key"/>
+        <parameter key="sandbox_i99285382524" id="lq.public.key"/>
+    </parameters>
+
+    <services>
+        <service id="swag_payment_example.example_payment_service"
+                 class="SwagPaymentExample\Components\ExamplePayment\ExamplePaymentService" public="true">
+        </service>
+        <service class="SwagPaymentExample\Services\CheckoutService" id="swag_payment_example.services.checkout_service"/>
+
+        <service class="SwagPaymentExample\Subscriber\CheckoutConfirm" id="swag_payment_example.subscriber.checkout_confirm">
+            <argument id="swag_payment_example.services.checkout_service" type="service"/>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+    </services>
+</container>

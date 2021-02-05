@@ -46,6 +46,7 @@
                     {block name="frontend_account_orders_welcome_content"}
                         <div class="panel--body is--wide">
                             <h2>Total: {$total|currency}</h2>
+                            <span>Total counts only by completed orders</span>
                         </div>
                     {/block}
                 {/if}
